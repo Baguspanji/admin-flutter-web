@@ -1,0 +1,100 @@
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL21haXN5YXJvaC5jb20vbWVyY2hhbnQvYXBpL2xvZ2luIiwiaWF0IjoxNjMzMDEwMDE4LCJleHAiOjE2MzMwMTM2MTgsIm5iZiI6MTYzMzAxMDAxOCwianRpIjoiQUJmMDlBS25ROHBBWTNpQSIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.75ldzIBWYfgm1JzvrQc4QKrxXbQkP83Wq1Qcre1gw5E
+
+# @url_server = http://127.0.0.1:8000/api
+@url_server = https://maisyaroh.com/merchant/api
+
+
+POST {{url_server}}/register HTTP/1.1
+content-type: application/json
+
+{
+    "name":"bagusp",
+    "email":"pitungs060@gmail.com",
+    "password":"Ayu123",
+    "password_confirmation":"Ayu123"
+}
+
+###
+POST {{url_server}}/login HTTP/1.1
+content-type: application/json
+
+{
+    "email":"pitungs060@gmail.com",
+    "password":"123456"
+}
+
+###
+POST {{url_server}}/login HTTP/1.1
+content-type: application/json
+
+{
+    "email":"bagusp0518@gmail.com",
+    "password":"123456"
+}
+
+###
+GET {{ url_server }}/produk HTTP/1.1
+Authorization: Bearer {{token}}
+
+###
+GET {{ url_server }}/produk/4 HTTP/1.1
+Authorization: Bearer {{token}}
+
+###
+POST {{ url_server }}/produk HTTP/1.1
+Authorization: Bearer {{token}}
+content-type: application/json
+
+{
+    "nama": "Gelas Cangkir",
+    "satuan": "pcs",
+    "harga": 20000,
+    "stok": 12
+}
+
+###
+PUT {{ url_server }}/produk/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "nama": "Ayam Geprek",
+    "satuan": "pcs",
+    "harga": 12000,
+    "stok": 12
+}
+
+###
+DELETE {{ url_server }}/produk/2 HTTP/1.1
+Authorization: Bearer {{token}}
+
+
+###
+GET {{ url_server }}/pesan HTTP/1.1
+Authorization: Bearer {{token}}
+
+###
+GET {{ url_server }}/pesan/1 HTTP/1.1
+Authorization: Bearer {{token}}
+
+
+###
+POST {{ url_server }}/pesan HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+	"pesan": [
+		{
+			"produk_id": 1,
+			"qty": 2,
+			"jumlah": 24000
+		},
+		{
+			"produk_id": 2,
+			"qty": 2,
+			"jumlah": 24000
+		}
+	]
+}
+
